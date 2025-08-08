@@ -225,7 +225,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -350,7 +350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 751707816}
   - component: {fileID: 751707815}
-  - component: {fileID: 751707819}
   - component: {fileID: 751707818}
   m_Layer: 0
   m_Name: Lander2
@@ -441,7 +440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c18c81903659df4683cde4800920f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 751707819}
   thrusterSpeed: 5
   PlayerControls:
     m_Name: Player Controls
@@ -492,33 +490,11 @@ MonoBehaviour:
       m_Action: Player Controls
       m_Flags: 8
     m_Flags: 0
---- !u!50 &751707819
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751707814}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  currentVelocity: {x: 5, y: -1}
+  gravity: {x: 0, y: -1}
+  rot: 0
+  rotationSpeed: 0.95
+  moveDirection: {x: 0, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
