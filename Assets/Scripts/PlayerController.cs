@@ -8,13 +8,14 @@ public class PlayerController : MonoBehaviour
 
   // Transform transform;
   public float thrusterSpeed = 5f;
+  public float rotationSpeed = 0.85f;
+
   public InputAction PlayerControls;
 
-  public Vector2 currentVelocity = new(5.0f, -1.0f); // start velocity
-  public Vector2 gravity = Vector2.down;
+  public Vector3 currentVelocity = new(5.0f, -1.0f, 0.0f); // start velocity
+  public Vector3 gravity = Vector3.down;
 
   public float rot = 0;
-  public float rotationSpeed = 0.85f;
 
   public Vector2 moveDirection = Vector2.zero;
 
@@ -43,9 +44,12 @@ public class PlayerController : MonoBehaviour
   void FixedUpdate()
   {
     // figure out if the player is pressing the 'w' key
-    
+
     HandleRotation();
     HandleThruster();
+
+    currentVelocity += gravity / 1000;
+    transform.position += currentVelocity;
 
     // currentVelocity += gravity;
     // rb.linearVelocity = new Vector2(moveDirection.x * thrusterSpeed, moveDirection.y * thrusterSpeed);
@@ -76,6 +80,18 @@ public class PlayerController : MonoBehaviour
     if (moveDirection.y == 0)
       return;
 
+    Vector3 thrust = transform.up * (thrusterSpeed / 1000) * moveDirection.y;
+
+    // transform.position += thrust;
+    currentVelocity += thrust;
+    // Vector3 up = Vector3.Dot(transform.eulerAngles, Vector3.up);
+
     //transform.position
+  }
+
+  void OnDrawGizmos()
+  {
+    Gizmos.color = Color.red;
+    Gizmos.DrawLine(transform.position, transform.position + transform.up);
   }
 }
