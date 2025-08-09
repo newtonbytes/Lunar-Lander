@@ -10,10 +10,18 @@ public class PlayerController : MonoBehaviour
   public float thrusterSpeed = 5f;
   public float rotationSpeed = 0.85f;
 
-  public InputAction PlayerControls;
+  public float height;
+  public float heightThreshold;
 
-  public Vector3 currentVelocity = new(5.0f, -1.0f, 0.0f); // start velocity
-  public Vector3 gravity = Vector3.down;
+  public InputAction PlayerControls;
+  public SpriteRenderer sr;
+  public SpriteRenderer fsr;
+
+  public Sprite normalSprite;
+  public Sprite fireSprite;
+
+  public Vector3 currentVelocity = new(0.0f, 0.0f, 0.0f); // start velocity
+  public Vector3 gravity = new(0.0f, 0.02f, 0.0f);
 
   public float rot = 0;
 
@@ -31,7 +39,7 @@ public class PlayerController : MonoBehaviour
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Start()
   {
-    // transform = 
+    sr.sprite = normalSprite;
   }
 
   // Update is called once per frame
@@ -78,7 +86,12 @@ public class PlayerController : MonoBehaviour
   void HandleThruster()
   {
     if (moveDirection.y == 0)
+    {
+      fsr.enabled = false;
       return;
+    }
+
+    fsr.enabled = true;
 
     Vector3 thrust = transform.up * (thrusterSpeed / 1000) * moveDirection.y;
 
